@@ -5,9 +5,10 @@
 // Plasmic Project: n5Fhkbw8v9iAr45cMpgyB5
 import * as React from "react";
 import { AntdConfigProvider } from "@plasmicpkgs/antd5/skinny/registerConfigProvider";
+import { EmbedCss } from "@plasmicpkgs/plasmic-embed-css";
 
 export default function GlobalContextsProvider(props) {
-  const { children, antdConfigProviderProps } = props;
+  const { children, antdConfigProviderProps, embedCssProps } = props;
   return (
     <AntdConfigProvider
       {...antdConfigProviderProps}
@@ -101,7 +102,16 @@ export default function GlobalContextsProvider(props) {
           : false
       }
     >
-      {children}
+      <EmbedCss
+        {...embedCssProps}
+        css={
+          embedCssProps && "css" in embedCssProps
+            ? embedCssProps.css
+            : "@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');\r\n@import url('https://fonts.googleapis.com/css2?family=Material+Symbols');\r\n@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');\r\n@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded');"
+        }
+      >
+        {children}
+      </EmbedCss>
     </AntdConfigProvider>
   );
 }

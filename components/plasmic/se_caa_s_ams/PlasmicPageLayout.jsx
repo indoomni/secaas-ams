@@ -16,7 +16,8 @@ import {
   createPlasmicElementProxy,
   deriveRenderOpts,
   renderPlasmicSlot,
-  useCurrentUser
+  useCurrentUser,
+  useDollarState
 } from "@plasmicapp/react-web";
 import {
   DataCtxReader as DataCtxReader__,
@@ -37,7 +38,18 @@ createPlasmicElementProxy;
 
 export const PlasmicPageLayout__VariantProps = new Array();
 
-export const PlasmicPageLayout__ArgProps = new Array("children");
+export const PlasmicPageLayout__ArgProps = new Array(
+  "children",
+  "onBaseUrlChange",
+  "selectedProvince",
+  "onSelectedProvinceChange",
+  "selectedCity",
+  "onSelectedCityChange",
+  "selectedDistrict",
+  "onSelectedDistrictChange",
+  "selectedWard",
+  "onSelectedWardChange"
+);
 
 const $$ = {};
 
@@ -69,6 +81,54 @@ function PlasmicPageLayout__RenderFunc(props) {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
   const currentUser = useCurrentUser?.() || {};
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "baseUrl",
+        type: "readonly",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          "https://acaas-api-dev.indoomni.app",
+        onChangeProp: "onBaseUrlChange"
+      },
+      {
+        path: "selectedProvince",
+        type: "writable",
+        variableType: "object",
+        valueProp: "selectedProvince",
+        onChangeProp: "onSelectedProvinceChange"
+      },
+      {
+        path: "selectedCity",
+        type: "writable",
+        variableType: "object",
+        valueProp: "selectedCity",
+        onChangeProp: "onSelectedCityChange"
+      },
+      {
+        path: "selectedDistrict",
+        type: "writable",
+        variableType: "object",
+        valueProp: "selectedDistrict",
+        onChangeProp: "onSelectedDistrictChange"
+      },
+      {
+        path: "selectedWard",
+        type: "writable",
+        variableType: "object",
+        valueProp: "selectedWard",
+        onChangeProp: "onSelectedWardChange"
+      }
+    ],
+
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $refs
+  });
   return (
     <RichLayout
       data-plasmic-name={"root"}
@@ -76,29 +136,56 @@ function PlasmicPageLayout__RenderFunc(props) {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       actionsChildren={
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__cmnA)}
-        >
-          <AntdAvatar
-            data-plasmic-name={"avatar"}
-            data-plasmic-override={overrides.avatar}
-            className={classNames("__wab_instance", sty.avatar)}
-            letters={"IS"}
-            size={"small"}
-          />
+        <div className={classNames(projectcss.all, sty.freeBox__qRIa)}>
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__cmnA)}
+          >
+            <AntdAvatar
+              data-plasmic-name={"avatar"}
+              data-plasmic-override={overrides.avatar}
+              className={classNames("__wab_instance", sty.avatar)}
+              letters={"IS"}
+              size={"small"}
+            />
 
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text___4AUg5
+              )}
+            >
+              {"Iman Sjamhudi"}
+            </div>
+          </Stack__>
           <div
+            data-plasmic-name={"hiddenBaseUrl"}
+            data-plasmic-override={overrides.hiddenBaseUrl}
             className={classNames(
               projectcss.all,
               projectcss.__wab_text,
-              sty.text___4AUg5
+              sty.hiddenBaseUrl
             )}
           >
-            {"Iman Sjamhudi"}
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $state.baseUrl;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
           </div>
-        </Stack__>
+        </div>
       }
       className={classNames(
         "__wab_instance",
@@ -110,6 +197,7 @@ function PlasmicPageLayout__RenderFunc(props) {
         plasmic_plasmic_rich_components_css.plasmic_tokens,
         sty.root
       )}
+      fixSiderbar={true}
       fixedHeader={true}
       layout={"side"}
       logoElement={
@@ -125,14 +213,15 @@ function PlasmicPageLayout__RenderFunc(props) {
       })()}
       navMenuItems={(() => {
         const __composite = [
+          { path: "/", name: "Home" },
           { path: null, name: null },
           { path: null, name: null }
         ];
 
-        __composite["0"]["path"] = `/`;
-        __composite["0"]["name"] = "Home";
-        __composite["1"]["path"] = `/login`;
-        __composite["1"]["name"] = "Login";
+        __composite["1"]["path"] = `/provinces`;
+        __composite["1"]["name"] = "Provinces";
+        __composite["2"]["path"] = `/cities`;
+        __composite["2"]["name"] = "Cities";
         return __composite;
       })()}
       simpleNavTheme={(() => {
@@ -212,9 +301,10 @@ function PlasmicPageLayout__RenderFunc(props) {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "loadingBoundary", "avatar"],
+  root: ["root", "loadingBoundary", "avatar", "hiddenBaseUrl"],
   loadingBoundary: ["loadingBoundary"],
-  avatar: ["avatar"]
+  avatar: ["avatar"],
+  hiddenBaseUrl: ["hiddenBaseUrl"]
 };
 
 function makeNodeComponent(nodeName) {
@@ -251,6 +341,7 @@ export const PlasmicPageLayout = Object.assign(
     // Helper components rendering sub-elements
     loadingBoundary: makeNodeComponent("loadingBoundary"),
     avatar: makeNodeComponent("avatar"),
+    hiddenBaseUrl: makeNodeComponent("hiddenBaseUrl"),
     // Metadata about props expected for PlasmicPageLayout
     internalVariantProps: PlasmicPageLayout__VariantProps,
     internalArgProps: PlasmicPageLayout__ArgProps

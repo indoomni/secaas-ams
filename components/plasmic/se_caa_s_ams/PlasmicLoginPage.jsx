@@ -15,7 +15,10 @@ import {
   classNames,
   createPlasmicElementProxy,
   deriveRenderOpts,
-  useCurrentUser
+  generateStateOnChangeProp,
+  generateStateValueProp,
+  useCurrentUser,
+  useDollarState
 } from "@plasmicapp/react-web";
 import {
   DataCtxReader as DataCtxReader__,
@@ -64,6 +67,48 @@ function PlasmicLoginPage__RenderFunc(props) {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
   const currentUser = useCurrentUser?.() || {};
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "pageLayout.baseUrl",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "pageLayout.selectedProvince",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "pageLayout.selectedCity",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "pageLayout.selectedDistrict",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "pageLayout.selectedWard",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      }
+    ],
+
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $refs
+  });
   return (
     <React.Fragment>
       <Head></Head>
@@ -95,6 +140,42 @@ function PlasmicLoginPage__RenderFunc(props) {
             data-plasmic-name={"pageLayout"}
             data-plasmic-override={overrides.pageLayout}
             className={classNames("__wab_instance", sty.pageLayout)}
+            onBaseUrlChange={generateStateOnChangeProp($state, [
+              "pageLayout",
+              "baseUrl"
+            ])}
+            onSelectedCityChange={generateStateOnChangeProp($state, [
+              "pageLayout",
+              "selectedCity"
+            ])}
+            onSelectedDistrictChange={generateStateOnChangeProp($state, [
+              "pageLayout",
+              "selectedDistrict"
+            ])}
+            onSelectedProvinceChange={generateStateOnChangeProp($state, [
+              "pageLayout",
+              "selectedProvince"
+            ])}
+            onSelectedWardChange={generateStateOnChangeProp($state, [
+              "pageLayout",
+              "selectedWard"
+            ])}
+            selectedCity={generateStateValueProp($state, [
+              "pageLayout",
+              "selectedCity"
+            ])}
+            selectedDistrict={generateStateValueProp($state, [
+              "pageLayout",
+              "selectedDistrict"
+            ])}
+            selectedProvince={generateStateValueProp($state, [
+              "pageLayout",
+              "selectedProvince"
+            ])}
+            selectedWard={generateStateValueProp($state, [
+              "pageLayout",
+              "selectedWard"
+            ])}
           >
             <DataCtxReader__>
               {$ctx => (

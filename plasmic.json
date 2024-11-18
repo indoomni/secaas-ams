@@ -7,7 +7,7 @@
   },
   "style": {
     "scheme": "css-modules",
-    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.css"
+    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.module.css"
   },
   "images": {
     "scheme": "public-files",
@@ -41,7 +41,8 @@
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "jsBundleThemes": []
     },
     {
       "projectId": "jkU633o1Cz7HrJdwdxhVHk",
@@ -95,7 +96,8 @@
           }
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "jsBundleThemes": []
     },
     {
       "projectId": "ohDidvG9XsCeFumugENU3J",
@@ -495,7 +497,8 @@
           "componentImportPath": "@plasmicpkgs/antd5/skinny/registerBreadcrumb"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "jsBundleThemes": []
     },
     {
       "projectId": "n5Fhkbw8v9iAr45cMpgyB5",
@@ -544,6 +547,34 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/login"
+        },
+        {
+          "id": "vaE2RQJFyauH",
+          "name": "ProvincesPage",
+          "type": "managed",
+          "projectId": "n5Fhkbw8v9iAr45cMpgyB5",
+          "renderModuleFilePath": "plasmic/se_caa_s_ams/PlasmicProvincesPage.jsx",
+          "importSpec": {
+            "modulePath": "../pages/provinces.jsx"
+          },
+          "cssFilePath": "plasmic/se_caa_s_ams/PlasmicProvincesPage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/provinces"
+        },
+        {
+          "id": "lkmet7zMq6NP",
+          "name": "CitiesPage",
+          "type": "managed",
+          "projectId": "n5Fhkbw8v9iAr45cMpgyB5",
+          "renderModuleFilePath": "plasmic/se_caa_s_ams/PlasmicCitiesPage.jsx",
+          "importSpec": {
+            "modulePath": "../pages/cities.jsx"
+          },
+          "cssFilePath": "plasmic/se_caa_s_ams/PlasmicCitiesPage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/cities"
         }
       ],
       "icons": [
@@ -574,6 +605,28 @@
           "name": "Fetcher",
           "displayName": "plasmic-data-source-fetcher",
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
+        }
+      ],
+      "customFunctions": []
+    },
+    {
+      "projectId": "8PtdGodUbexNYgkuyBUcWu",
+      "projectApiToken": "34o5R5KswluuZ4sD83F88oQrcLWsNNeUpCptQ8Okf4hYqgjnHnX2idGAlhtB7WWQQelNAInf5XFazR1cGw",
+      "projectName": "plasmic-embed-css",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/plasmic_embed_css/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "plasmic/plasmic_embed_css/PlasmicGlobalContextsProvider.jsx",
+      "splitsProviderFilePath": "",
+      "codeComponents": [
+        {
+          "id": "qF0uJxFztB",
+          "name": "EmbedCss",
+          "displayName": "global-embed-css",
+          "componentImportPath": "@plasmicpkgs/plasmic-embed-css"
         }
       ],
       "customFunctions": []
