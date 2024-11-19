@@ -16,7 +16,6 @@ import {
   createPlasmicElementProxy,
   deriveRenderOpts,
   generateStateOnChangeProp,
-  generateStateValueProp,
   useCurrentUser,
   useDollarState
 } from "@plasmicapp/react-web";
@@ -24,12 +23,14 @@ import {
   DataCtxReader as DataCtxReader__,
   useDataEnv
 } from "@plasmicapp/react-web/lib/host";
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import PageLayout from "../../PageLayout"; // plasmic-import: LntSjwsq1IGJ/component
 import "@plasmicapp/react-web/lib/plasmic.css";
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: n5Fhkbw8v9iAr45cMpgyB5/projectcss
 import sty from "./PlasmicHomePage.module.css"; // plasmic-import: Yb6C8UbmqsYP/css
+import { log as __fn_logger__log } from "utils/logger"; // plasmic-import: logger.log/customFunction
 
 createPlasmicElementProxy;
 
@@ -37,7 +38,11 @@ export const PlasmicHomePage__VariantProps = new Array();
 
 export const PlasmicHomePage__ArgProps = new Array();
 
-const $$ = {};
+const $$ = {
+  logger: {
+    log: __fn_logger__log
+  }
+};
 
 function useNextRouter() {
   try {
@@ -74,30 +79,6 @@ function PlasmicHomePage__RenderFunc(props) {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "pageLayout.selectedProvince",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
-      },
-      {
-        path: "pageLayout.selectedCity",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
-      },
-      {
-        path: "pageLayout.selectedDistrict",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
-      },
-      {
-        path: "pageLayout.selectedWard",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       }
     ],
 
@@ -136,6 +117,34 @@ function PlasmicHomePage__RenderFunc(props) {
             sty.home
           )}
         >
+          <SideEffect
+            data-plasmic-name={"sideEffect"}
+            data-plasmic-override={overrides.sideEffect}
+            className={classNames("__wab_instance", sty.sideEffect)}
+            onMount={async () => {
+              const $steps = {};
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return $$.logger.log("Hello world!");
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+          />
+
           <PageLayout
             data-plasmic-name={"pageLayout"}
             data-plasmic-override={overrides.pageLayout}
@@ -143,38 +152,6 @@ function PlasmicHomePage__RenderFunc(props) {
             onBaseUrlChange={generateStateOnChangeProp($state, [
               "pageLayout",
               "baseUrl"
-            ])}
-            onSelectedCityChange={generateStateOnChangeProp($state, [
-              "pageLayout",
-              "selectedCity"
-            ])}
-            onSelectedDistrictChange={generateStateOnChangeProp($state, [
-              "pageLayout",
-              "selectedDistrict"
-            ])}
-            onSelectedProvinceChange={generateStateOnChangeProp($state, [
-              "pageLayout",
-              "selectedProvince"
-            ])}
-            onSelectedWardChange={generateStateOnChangeProp($state, [
-              "pageLayout",
-              "selectedWard"
-            ])}
-            selectedCity={generateStateValueProp($state, [
-              "pageLayout",
-              "selectedCity"
-            ])}
-            selectedDistrict={generateStateValueProp($state, [
-              "pageLayout",
-              "selectedDistrict"
-            ])}
-            selectedProvince={generateStateValueProp($state, [
-              "pageLayout",
-              "selectedProvince"
-            ])}
-            selectedWard={generateStateValueProp($state, [
-              "pageLayout",
-              "selectedWard"
             ])}
           >
             <DataCtxReader__>
@@ -220,7 +197,8 @@ function PlasmicHomePage__RenderFunc(props) {
 }
 
 const PlasmicDescendants = {
-  home: ["home", "pageLayout", "section", "h1", "text"],
+  home: ["home", "sideEffect", "pageLayout", "section", "h1", "text"],
+  sideEffect: ["sideEffect"],
   pageLayout: ["pageLayout", "section", "h1", "text"],
   section: ["section", "h1", "text"],
   h1: ["h1"],
@@ -259,6 +237,7 @@ export const PlasmicHomePage = Object.assign(
   makeNodeComponent("home"),
   {
     // Helper components rendering sub-elements
+    sideEffect: makeNodeComponent("sideEffect"),
     pageLayout: makeNodeComponent("pageLayout"),
     section: makeNodeComponent("section"),
     h1: makeNodeComponent("h1"),

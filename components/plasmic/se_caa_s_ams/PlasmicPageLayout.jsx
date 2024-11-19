@@ -33,6 +33,7 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: n5Fhkbw8v9iAr4
 import sty from "./PlasmicPageLayout.module.css"; // plasmic-import: LntSjwsq1IGJ/css
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: MqitE1FHOO7R/icon
 import LogoOmniSvgIcon from "./icons/PlasmicIcon__LogoOmniSvg"; // plasmic-import: NBvN1p4GWOaS/icon
+import { isLoggedIn as __fn_user__isLoggedIn } from "utils/user"; // plasmic-import: user.isLoggedIn/customFunction
 
 createPlasmicElementProxy;
 
@@ -40,18 +41,14 @@ export const PlasmicPageLayout__VariantProps = new Array();
 
 export const PlasmicPageLayout__ArgProps = new Array(
   "children",
-  "onBaseUrlChange",
-  "selectedProvince",
-  "onSelectedProvinceChange",
-  "selectedCity",
-  "onSelectedCityChange",
-  "selectedDistrict",
-  "onSelectedDistrictChange",
-  "selectedWard",
-  "onSelectedWardChange"
+  "onBaseUrlChange"
 );
 
-const $$ = {};
+const $$ = {
+  user: {
+    isLoggedIn: __fn_user__isLoggedIn
+  }
+};
 
 function useNextRouter() {
   try {
@@ -90,34 +87,6 @@ function PlasmicPageLayout__RenderFunc(props) {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           "https://acaas-api-dev.indoomni.app",
         onChangeProp: "onBaseUrlChange"
-      },
-      {
-        path: "selectedProvince",
-        type: "writable",
-        variableType: "object",
-        valueProp: "selectedProvince",
-        onChangeProp: "onSelectedProvinceChange"
-      },
-      {
-        path: "selectedCity",
-        type: "writable",
-        variableType: "object",
-        valueProp: "selectedCity",
-        onChangeProp: "onSelectedCityChange"
-      },
-      {
-        path: "selectedDistrict",
-        type: "writable",
-        variableType: "object",
-        valueProp: "selectedDistrict",
-        onChangeProp: "onSelectedDistrictChange"
-      },
-      {
-        path: "selectedWard",
-        type: "writable",
-        variableType: "object",
-        valueProp: "selectedWard",
-        onChangeProp: "onSelectedWardChange"
       }
     ],
 
@@ -207,21 +176,27 @@ function PlasmicPageLayout__RenderFunc(props) {
         />
       }
       menu={(() => {
-        const __composite = { hideMenuWhenCollapsed: null };
+        const __composite = {
+          hideMenuWhenCollapsed: null,
+          defaultOpenAll: null
+        };
         __composite["hideMenuWhenCollapsed"] = true;
+        __composite["defaultOpenAll"] = true;
         return __composite;
       })()}
       navMenuItems={(() => {
         const __composite = [
           { path: "/", name: "Home" },
-          { path: null, name: null },
-          { path: null, name: null }
+          { path: null, name: null, condition: null },
+          { path: null, name: null, condition: null }
         ];
 
-        __composite["1"]["path"] = `/provinces`;
-        __composite["1"]["name"] = "Provinces";
-        __composite["2"]["path"] = `/cities`;
-        __composite["2"]["name"] = "Cities";
+        __composite["1"]["path"] = `/user/login`;
+        __composite["1"]["name"] = "Login";
+        __composite["1"]["condition"] = $$.user.isLoggedIn() == false;
+        __composite["2"]["path"] = `/user/profile`;
+        __composite["2"]["name"] = "My profile";
+        __composite["2"]["condition"] = $$.user.isLoggedIn() == true;
         return __composite;
       })()}
       simpleNavTheme={(() => {

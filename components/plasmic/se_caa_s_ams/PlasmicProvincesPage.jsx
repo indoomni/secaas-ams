@@ -21,14 +21,12 @@ import {
   generateStateOnChangePropForCodeComponents,
   generateStateValueProp,
   initializeCodeComponentStates,
-  set as $stateSet,
   useCurrentUser,
   useDollarState
 } from "@plasmicapp/react-web";
 import {
   DataCtxReader as DataCtxReader__,
-  useDataEnv,
-  useGlobalActions
+  useDataEnv
 } from "@plasmicapp/react-web/lib/host";
 import { usePlasmicDataSourceContext } from "@plasmicapp/data-sources-context";
 import {
@@ -82,7 +80,6 @@ function PlasmicProvincesPage__RenderFunc(props) {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
-  const $globalActions = useGlobalActions?.();
   const currentUser = useCurrentUser?.() || {};
   let [$queries, setDollarQueries] = React.useState({});
   const stateSpecs = React.useMemo(
@@ -127,30 +124,6 @@ function PlasmicProvincesPage__RenderFunc(props) {
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
         onMutate: generateOnMutateForSpec("value", AntdInput_Helpers)
-      },
-      {
-        path: "pageLayout.selectedProvince",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
-      },
-      {
-        path: "pageLayout.selectedCity",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
-      },
-      {
-        path: "pageLayout.selectedDistrict",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
-      },
-      {
-        path: "pageLayout.selectedWard",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       }
     ],
 
@@ -230,38 +203,6 @@ function PlasmicProvincesPage__RenderFunc(props) {
             onBaseUrlChange={generateStateOnChangeProp($state, [
               "pageLayout",
               "baseUrl"
-            ])}
-            onSelectedCityChange={generateStateOnChangeProp($state, [
-              "pageLayout",
-              "selectedCity"
-            ])}
-            onSelectedDistrictChange={generateStateOnChangeProp($state, [
-              "pageLayout",
-              "selectedDistrict"
-            ])}
-            onSelectedProvinceChange={generateStateOnChangeProp($state, [
-              "pageLayout",
-              "selectedProvince"
-            ])}
-            onSelectedWardChange={generateStateOnChangeProp($state, [
-              "pageLayout",
-              "selectedWard"
-            ])}
-            selectedCity={generateStateValueProp($state, [
-              "pageLayout",
-              "selectedCity"
-            ])}
-            selectedDistrict={generateStateValueProp($state, [
-              "pageLayout",
-              "selectedDistrict"
-            ])}
-            selectedProvince={generateStateValueProp($state, [
-              "pageLayout",
-              "selectedProvince"
-            ])}
-            selectedWard={generateStateValueProp($state, [
-              "pageLayout",
-              "selectedWard"
             ])}
           >
             <DataCtxReader__>
@@ -420,96 +361,45 @@ function PlasmicProvincesPage__RenderFunc(props) {
                       hideSearch: true,
                       onRowClick: async (rowKey, row, event) => {
                         const $steps = {};
-                        $steps["updatePageLayoutSelectedProvince"] = true
+                        $steps["goToCitiesPage"] = true
                           ? (() => {
                               const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: [
-                                    "pageLayout",
-                                    "selectedProvince"
-                                  ]
-                                },
-                                operation: 0,
-                                value: $state.provincesTable.selectedRow
+                                destination: `/provinces/${(() => {
+                                  try {
+                                    return $state.provincesTable.selectedRow.id;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}/cities`
                               };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
+                              return (({ destination }) => {
+                                if (
+                                  typeof destination === "string" &&
+                                  destination.startsWith("#")
+                                ) {
+                                  document
+                                    .getElementById(destination.substr(1))
+                                    .scrollIntoView({ behavior: "smooth" });
+                                } else {
+                                  __nextRouter?.push(destination);
                                 }
-                                const { objRoot, variablePath } = variable;
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
                               })?.apply(null, [actionArgs]);
                             })()
                           : undefined;
                         if (
-                          $steps["updatePageLayoutSelectedProvince"] != null &&
-                          typeof $steps["updatePageLayoutSelectedProvince"] ===
-                            "object" &&
-                          typeof $steps["updatePageLayoutSelectedProvince"]
-                            .then === "function"
+                          $steps["goToCitiesPage"] != null &&
+                          typeof $steps["goToCitiesPage"] === "object" &&
+                          typeof $steps["goToCitiesPage"].then === "function"
                         ) {
-                          $steps["updatePageLayoutSelectedProvince"] =
-                            await $steps["updatePageLayoutSelectedProvince"];
-                        }
-                        $steps["invokeGlobalAction"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  "info",
-                                  (() => {
-                                    try {
-                                      return $state.pageLayout.selectedProvince
-                                        .name;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })(),
-                                  (() => {
-                                    try {
-                                      return $state.pageLayout.selectedProvince
-                                        .slug;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })(),
-                                  undefined,
-                                  "bottomLeft"
-                                ]
-                              };
-                              return $globalActions[
-                                "plasmic-antd5-config-provider.showNotification"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["invokeGlobalAction"] != null &&
-                          typeof $steps["invokeGlobalAction"] === "object" &&
-                          typeof $steps["invokeGlobalAction"].then ===
-                            "function"
-                        ) {
-                          $steps["invokeGlobalAction"] = await $steps[
-                            "invokeGlobalAction"
+                          $steps["goToCitiesPage"] = await $steps[
+                            "goToCitiesPage"
                           ];
                         }
                       },
