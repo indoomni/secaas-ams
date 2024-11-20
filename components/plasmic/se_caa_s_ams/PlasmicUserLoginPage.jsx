@@ -44,6 +44,7 @@ import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css";
 import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: n5Fhkbw8v9iAr45cMpgyB5/projectcss
 import sty from "./PlasmicUserLoginPage.module.css"; // plasmic-import: WBbXDDW5AxkE/css
+import { loggedIn as __fn_user__loggedIn } from "utils/user"; // plasmic-import: user.loggedIn/customFunction
 
 createPlasmicElementProxy;
 
@@ -51,7 +52,11 @@ export const PlasmicUserLoginPage__VariantProps = new Array();
 
 export const PlasmicUserLoginPage__ArgProps = new Array();
 
-const $$ = {};
+const $$ = {
+  user: {
+    loggedIn: __fn_user__loggedIn
+  }
+};
 
 function useNextRouter() {
   try {

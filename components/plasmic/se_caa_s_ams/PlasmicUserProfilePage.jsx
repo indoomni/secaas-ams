@@ -40,6 +40,8 @@ import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css";
 import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: n5Fhkbw8v9iAr45cMpgyB5/projectcss
 import sty from "./PlasmicUserProfilePage.module.css"; // plasmic-import: yKO_ucj1k1Pv/css
+import { loggedOut as __fn_user__loggedOut } from "utils/user"; // plasmic-import: user.loggedOut/customFunction
+import { getUser as __fn_user__getUser } from "utils/user"; // plasmic-import: user.getUser/customFunction
 
 createPlasmicElementProxy;
 
@@ -47,7 +49,12 @@ export const PlasmicUserProfilePage__VariantProps = new Array();
 
 export const PlasmicUserProfilePage__ArgProps = new Array();
 
-const $$ = {};
+const $$ = {
+  user: {
+    loggedOut: __fn_user__loggedOut,
+    getUser: __fn_user__getUser
+  }
+};
 
 function useNextRouter() {
   try {
@@ -306,6 +313,19 @@ function PlasmicUserProfilePage__RenderFunc(props) {
                           data-plasmic-name={"email"}
                           data-plasmic-override={overrides.email}
                           className={classNames("__wab_instance", sty.email)}
+                          initialValue={(() => {
+                            try {
+                              return $$.user.getUser().email;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
                           label={"Email address"}
                           name={"email"}
                           rules={[
@@ -371,6 +391,19 @@ function PlasmicUserProfilePage__RenderFunc(props) {
                               "__wab_instance",
                               sty.username
                             )}
+                            initialValue={(() => {
+                              try {
+                                return $$.user.getUser().username;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             label={"Username"}
                             name={"username"}
                             rules={[]}
@@ -421,6 +454,19 @@ function PlasmicUserProfilePage__RenderFunc(props) {
                             data-plasmic-name={"msisdn"}
                             data-plasmic-override={overrides.msisdn}
                             className={classNames("__wab_instance", sty.msisdn)}
+                            initialValue={(() => {
+                              try {
+                                return $$.user.getUser().msisdn;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
                             label={"Phone number"}
                             name={"msisdn"}
                             rules={[]}

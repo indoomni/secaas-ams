@@ -30,6 +30,7 @@ import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css";
 import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: n5Fhkbw8v9iAr45cMpgyB5/projectcss
 import sty from "./PlasmicHomePage.module.css"; // plasmic-import: Yb6C8UbmqsYP/css
+import { log as __fn_logger__log } from "utils/logger"; // plasmic-import: logger.log/customFunction
 
 createPlasmicElementProxy;
 
@@ -37,7 +38,11 @@ export const PlasmicHomePage__VariantProps = new Array();
 
 export const PlasmicHomePage__ArgProps = new Array();
 
-const $$ = {};
+const $$ = {
+  logger: {
+    log: __fn_logger__log
+  }
+};
 
 function useNextRouter() {
   try {
