@@ -33,7 +33,6 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: n5Fhkbw8v9iAr4
 import sty from "./PlasmicPageLayout.module.css"; // plasmic-import: LntSjwsq1IGJ/css
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: MqitE1FHOO7R/icon
 import LogoOmniSvgIcon from "./icons/PlasmicIcon__LogoOmniSvg"; // plasmic-import: NBvN1p4GWOaS/icon
-import { isLoggedIn as __fn_user__isLoggedIn } from "utils/user"; // plasmic-import: user.isLoggedIn/customFunction
 
 createPlasmicElementProxy;
 
@@ -44,11 +43,7 @@ export const PlasmicPageLayout__ArgProps = new Array(
   "onBaseUrlChange"
 );
 
-const $$ = {
-  user: {
-    isLoggedIn: __fn_user__isLoggedIn
-  }
-};
+const $$ = {};
 
 function useNextRouter() {
   try {
@@ -184,21 +179,7 @@ function PlasmicPageLayout__RenderFunc(props) {
         __composite["defaultOpenAll"] = true;
         return __composite;
       })()}
-      navMenuItems={(() => {
-        const __composite = [
-          { path: "/", name: "Home" },
-          { path: null, name: null, condition: null },
-          { path: null, name: null, condition: null }
-        ];
-
-        __composite["1"]["path"] = `/user/login`;
-        __composite["1"]["name"] = "Login";
-        __composite["1"]["condition"] = !$$.user.isLoggedIn();
-        __composite["2"]["path"] = `/user/profile`;
-        __composite["2"]["name"] = "My profile";
-        __composite["2"]["condition"] = $$.user.isLoggedIn();
-        return __composite;
-      })()}
+      navMenuItems={[{ path: "/", name: "Home" }]}
       simpleNavTheme={(() => {
         const __composite = { scheme: null };
         __composite["scheme"] = "dark";
