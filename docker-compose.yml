@@ -1,0 +1,28 @@
+# version: "3.8"
+
+services: 
+  frontend:
+    container_name: ${APP_NAME}
+    build: .
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    # ports:
+    #   - ${PUBLIC_PORT}:${PORT}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${PROXY_APP_NAME}.rule=Host(`${PROXY_HOSTNAME}`)"
+      - "traefik.http.routers.${PROXY_APP_NAME}.entrypoints=https"
+      - "traefik.http.routers.${PROXY_APP_NAME}.tls=true"
+      - "traefik.http.routers.${PROXY_APP_NAME}.service=${PROXY_APP_NAME}"
+      - "traefik.http.services.${PROXY_APP_NAME}.loadbalancer.server.port=1337"
+    networks:
+      # - indoomni
+      - proxy
+
+networks:
+  # indoomni:
+  #   name: INDOOMNI
+  #   external: true
+  proxy:
+    external: true

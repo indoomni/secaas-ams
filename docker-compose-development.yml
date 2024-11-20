@@ -1,0 +1,20 @@
+# version: "3.8"
+
+services: 
+  secaas-asm:
+    container_name: ${APP_NAME}
+    build:
+      context: .
+      target: dev
+    restart: unless-stopped
+    command: yarn dev
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      # If you’re using Windows, you may need to uncomment the next line - Sol from @Kobe E
+      # - WATCHPACK_POLLING=true
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - ${PUBLIC_PORT}:${PORT}
