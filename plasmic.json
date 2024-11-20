@@ -625,84 +625,84 @@
         {
           "defaultExport": false,
           "id": "logger.log",
-          "importPath": "utils/logger",
+          "importPath": "pages/utils_logger.js",
           "name": "log",
           "namespace": "logger"
         },
         {
           "defaultExport": false,
           "id": "localStorage.setString",
-          "importPath": "utils/localStorage",
+          "importPath": "pages/utils_localStorage.js",
           "name": "setString",
           "namespace": "localStorage"
         },
         {
           "defaultExport": false,
           "id": "localStorage.setObject",
-          "importPath": "utils/localStorage",
+          "importPath": "pages/utils_localStorage.js",
           "name": "setObject",
           "namespace": "localStorage"
         },
         {
           "defaultExport": false,
           "id": "localStorage.getString",
-          "importPath": "utils/localStorage",
+          "importPath": "pages/utils_localStorage.js",
           "name": "getString",
           "namespace": "localStorage"
         },
         {
           "defaultExport": false,
           "id": "localStorage.getObject",
-          "importPath": "utils/localStorage",
+          "importPath": "pages/utils_localStorage.js",
           "name": "getObject",
           "namespace": "localStorage"
         },
         {
           "defaultExport": false,
           "id": "localStorage.remove",
-          "importPath": "utils/localStorage",
+          "importPath": "pages/utils_localStorage.js",
           "name": "remove",
           "namespace": "localStorage"
         },
         {
           "defaultExport": false,
           "id": "user.loggedIn",
-          "importPath": "utils/user",
+          "importPath": "pages/utils_user.js",
           "name": "loggedIn",
           "namespace": "user"
         },
         {
           "defaultExport": false,
           "id": "user.loggedOut",
-          "importPath": "utils/user",
+          "importPath": "pages/utils_user.js",
           "name": "loggedOut",
           "namespace": "user"
         },
         {
           "defaultExport": false,
           "id": "user.clear",
-          "importPath": "utils/user",
+          "importPath": "pages/utils_user.js",
           "name": "clear",
           "namespace": "user"
         },
         {
           "defaultExport": false,
           "id": "user.isLoggedIn",
-          "importPath": "utils/user",
+          "importPath": "pages/utils_user.js",
           "name": "isLoggedIn",
           "namespace": "user"
         },
         {
           "defaultExport": false,
           "id": "user.getJwt",
-          "importPath": "utils/user",
+          "importPath": "pages/utils_user.js",
           "name": "getJwt",
           "namespace": "user"
         },
         {
           "defaultExport": false,
           "id": "user.getUser",
-          "importPath": "utils/user",
+          "importPath": "pages/utils_user.js",
           "name": "getUser",
           "namespace": "user"
         }
