@@ -30,7 +30,7 @@ import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css";
 import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: n5Fhkbw8v9iAr45cMpgyB5/projectcss
 import sty from "./PlasmicHomePage.module.css"; // plasmic-import: Yb6C8UbmqsYP/css
-import { log as __fn_logger__log } from "pages/utils_logger.js"; // plasmic-import: logger.log/customFunction
+import { log as __fn_logger__log } from "../../../pages/utils_logger"; // plasmic-import: logger.log/customFunction
 
 createPlasmicElementProxy;
 
@@ -171,7 +171,7 @@ function PlasmicHomePage__RenderFunc(props) {
                       sty.h1
                     )}
                   >
-                    {"Hello! Good to see you."}
+                    {"Hello! Good to see you (again)."}
                   </h1>
                   <div
                     data-plasmic-name={"text"}
