@@ -575,6 +575,20 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/user/login"
+        },
+        {
+          "id": "DbH1wPy29Kzp",
+          "name": "UserLogoutPage",
+          "type": "managed",
+          "projectId": "n5Fhkbw8v9iAr45cMpgyB5",
+          "renderModuleFilePath": "plasmic/se_caa_s_ams/PlasmicUserLogoutPage.jsx",
+          "importSpec": {
+            "modulePath": "../pages/user/logout.jsx"
+          },
+          "cssFilePath": "plasmic/se_caa_s_ams/PlasmicUserLogoutPage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/user/logout"
         }
       ],
       "icons": [
