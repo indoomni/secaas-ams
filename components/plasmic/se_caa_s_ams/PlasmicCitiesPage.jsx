@@ -144,11 +144,7 @@ function PlasmicCitiesPage__RenderFunc(props) {
         opId: "57095b80-44e3-4b01-8c78-c6419b5db230",
         userArgs: {
           params: [$state.citiesSearch.value],
-          path: [
-            "api/public/provinces/" +
-              ($ctx.params.provinceId ? $ctx.params.provinceId : 0) +
-              "/cities"
-          ]
+          path: ["api/public/provinces/" + $ctx.params.provinceId + "/cities"]
         },
         cacheKey: `plasmic.$.57095b80-44e3-4b01-8c78-c6419b5db230.$.`,
         invalidatedKeys: null,
