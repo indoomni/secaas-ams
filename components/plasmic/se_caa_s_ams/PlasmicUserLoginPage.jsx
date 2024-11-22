@@ -203,7 +203,7 @@ function PlasmicUserLoginPage__RenderFunc(props) {
                       sty.h1
                     )}
                   >
-                    {"Login (again)"}
+                    {"Login"}
                   </h1>
                   <div
                     className={classNames(

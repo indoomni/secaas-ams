@@ -535,34 +535,6 @@
           "componentType": "component"
         },
         {
-          "id": "vaE2RQJFyauH",
-          "name": "ProvincesPage",
-          "type": "managed",
-          "projectId": "n5Fhkbw8v9iAr45cMpgyB5",
-          "renderModuleFilePath": "plasmic/se_caa_s_ams/PlasmicProvincesPage.jsx",
-          "importSpec": {
-            "modulePath": "../pages/provinces.jsx"
-          },
-          "cssFilePath": "plasmic/se_caa_s_ams/PlasmicProvincesPage.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/provinces"
-        },
-        {
-          "id": "lkmet7zMq6NP",
-          "name": "CitiesPage",
-          "type": "managed",
-          "projectId": "n5Fhkbw8v9iAr45cMpgyB5",
-          "renderModuleFilePath": "plasmic/se_caa_s_ams/PlasmicCitiesPage.jsx",
-          "importSpec": {
-            "modulePath": "../pages/provinces/[provinceId]/cities.jsx"
-          },
-          "cssFilePath": "plasmic/se_caa_s_ams/PlasmicCitiesPage.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/cities"
-        },
-        {
           "id": "WBbXDDW5AxkE",
           "name": "UserLoginPage",
           "type": "managed",
@@ -589,6 +561,34 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/user/logout"
+        },
+        {
+          "id": "7juZWqVc7aLc",
+          "name": "ProvincesPage",
+          "type": "managed",
+          "projectId": "n5Fhkbw8v9iAr45cMpgyB5",
+          "renderModuleFilePath": "plasmic/se_caa_s_ams/PlasmicProvincesPage.jsx",
+          "importSpec": {
+            "modulePath": "../pages/provinces.jsx"
+          },
+          "cssFilePath": "plasmic/se_caa_s_ams/PlasmicProvincesPage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/provinces"
+        },
+        {
+          "id": "fl7Lz7HPoqIC",
+          "name": "CitiesPage",
+          "type": "managed",
+          "projectId": "n5Fhkbw8v9iAr45cMpgyB5",
+          "renderModuleFilePath": "plasmic/se_caa_s_ams/PlasmicCitiesPage.jsx",
+          "importSpec": {
+            "modulePath": "../pages/cities.jsx"
+          },
+          "cssFilePath": "plasmic/se_caa_s_ams/PlasmicCitiesPage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/cities"
         }
       ],
       "icons": [

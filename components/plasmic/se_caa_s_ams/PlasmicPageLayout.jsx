@@ -85,7 +85,7 @@ function PlasmicPageLayout__RenderFunc(props) {
         type: "readonly",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
-          "https://acaas-api-dev.indoomni.app",
+          "https://secaas-api-iman-sd.indoomni.app",
         onChangeProp: "onBaseUrlChange"
       }
     ],
